@@ -1,0 +1,84 @@
+<template>
+    <div class="chat">
+        <div class="scrolling-chat">
+            <chat-message-list :messages="messages"></chat-message-list>
+        </div>
+        <chat-message-form @change="addRequest"></chat-message-form>
+    </div>
+</template>
+
+<script>
+    /* eslint-disable no-unused-vars, no-console */
+    import chatMessageList from './ChatMessageList.vue';
+    import chatMessageForm from './ChatMessageForm.vue';
+
+    import '../assets/sass/app.scss';
+
+    export default {
+        name      : "Chat",
+        components: {
+            chatMessageList,
+            chatMessageForm
+        },
+        data() {
+            return {
+                messages: []
+            };
+
+        },
+        created() {
+
+        },
+        mounted() {
+            this.sendRequest('');
+        },
+        methods   : {
+            sendRequest: function (message) {
+                const vm = this;
+                this.$root.api.sendRequest(message).then(function () {
+                    var responses = vm.$root.api.getResponsePayload();
+                    vm.setResponse(responses)
+                });
+            },
+            setResponse: function(responses, index) {
+                let response,
+                    vm = this;
+                index = index || 0;
+                if (index < responses.length) {
+                    response = responses[index];
+                    vm.addMessage(response);
+                    if (response.response_type === 'pause') {
+                        setTimeout(function () {
+                            vm.setResponse(responses, index + 1);
+                        }, response.time);
+                    }
+                    else {
+                        vm.setResponse(responses, index + 1);
+                    }
+
+                }
+            },
+            scrollToBottom: function () {
+                var scrollingChat       = this.$el.querySelector('.scrolling-chat');
+                scrollingChat.scrollTop = scrollingChat.scrollHeight;
+            },
+            addRequest: function (message) {
+                this.addMessage({
+                    user_response: true,
+                    response_type: 'text',
+                    text: message
+                });
+                this.sendRequest(message);
+            },
+            addMessage: function (message) {
+                this.messages.push(message);
+
+            }
+        }
+
+    };
+</script>
+
+<style lang="scss">
+
+</style>

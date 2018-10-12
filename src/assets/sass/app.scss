@@ -1,0 +1,75 @@
+@import "settings";
+@import "../../../node_modules/foundation-sites/scss/foundation";
+
+@include foundation-everything(true, true);
+
+.chat-container {
+    margin: 0 auto;
+}
+.chat {
+    height: 800px;
+    margin: 0 auto;
+    border : 1px solid $light-gray;
+}
+
+.scrolling-chat {
+    overflow-x : hidden;
+    overflow-y : scroll;
+    height     : calc(100% - 100px);
+}
+
+.chat-message-list {
+    padding : 1rem;
+    //border  : 1px solid $light-gray;
+    .chat-list {
+        list-style : none;
+        margin     : 0;
+        padding    : 0
+    }
+}
+
+.chat-message-item {
+    display       : flex;
+    margin-bottom : 1rem;
+
+    img {
+        max-height: 300px;
+    }
+
+    .item-avatar {
+
+    }
+    .item-bubble {
+        text-align    : left;
+        padding       : .5rem 1rem;
+        border-radius : 1rem;
+        max-width     : 90%;
+
+        .item-message {
+            margin-bottom: .5rem;
+        }
+
+        .item-time {
+            font-size : rem-calc(12px);
+        }
+    }
+
+    &.user-response {
+        justify-content : flex-end;
+        .item-bubble {
+            background : #e0e0e0;
+            color      : black;
+        }
+        .item-time {
+            text-align : right;
+        }
+    }
+    &.server-response {
+        justify-content : flex-start;
+        .item-bubble {
+            background : #2e7d32;
+            color      : white;
+        }
+    }
+
+}

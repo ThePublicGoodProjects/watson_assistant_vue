@@ -1,8 +1,19 @@
-import Vue from 'vue'
-import App from './App.vue'
+/* eslint-disable no-unused-vars, no-console */
+import Vue from 'vue';
+import App from './App.vue';
+import Moment from 'vue-moment';
+import Api from './watson-api.js';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.component('chatbox', require('./components/Chat.vue'));
+Vue.use(Moment);
 
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
+let vm = new Vue({
+    render: h => h(App),
+    data  : {
+        api: Api
+    }
+}).$mount('#chat-app');
+
+
+
