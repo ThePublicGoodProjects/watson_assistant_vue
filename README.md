@@ -1,6 +1,9 @@
 # Watson assistant chat interface
 
-  Built using vue-js
+  Built using vuejs.
+  **Currently in Beta - This was developed as a proof of concept and is under development**
+
+  **Todo**: API endpoint needs abstraction - currently hardcoded
 
 ## Project setup
 ```
