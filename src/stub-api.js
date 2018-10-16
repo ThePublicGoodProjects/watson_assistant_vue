@@ -1,13 +1,7 @@
-import Axios from 'axios';
 import Api from './api.js';
+import sampleRequest from './sample-request.json';
 
-// let url = '/api/message';
-// let url = 'http://localhost:3000/api/message';
-let url = 'https://pgp-layla-test.mybluemix.net/api/message';
-let axiosInstance = Axios.create({
-        baseURL: url,
-        headers: {'Content-type': 'application/json'}
-    });
+// var messageEndpoint = '/api/message';
 
 function translateResponse(payload) {
     let responses = [];
@@ -21,7 +15,7 @@ Api.sendRequest = sendRequest;
 
 function sendRequest(text) {
     // Build request payload
-    let payloadToWatson = {};
+    var payloadToWatson = {};
     if (text) {
         payloadToWatson.input = {
             text: text
@@ -35,13 +29,12 @@ function sendRequest(text) {
         Api.setRequestPayload(payloadToWatson);
     }
 
-    return axiosInstance.post(url, payloadToWatson, {
-        headers: {'Content-type': 'application/json'},
+    return new Promise(function (resolve, reject) {
+        resolve(sampleRequest);
     }).then(function (response) {
-        if (response && response.data) {
-            Api.setResponsePayload(translateResponse(response.data), response.data.context);
-        }
+        Api.setResponsePayload(translateResponse(response));
     });
+
 }
 
 export default Api;

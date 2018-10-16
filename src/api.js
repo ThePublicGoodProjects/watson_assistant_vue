@@ -3,7 +3,9 @@ let requestPayload,
     responsePayload,
     responseContext,
     api           = {
-        sendRequest: sendRequest,
+        sendRequest: function () {
+            throw "sendRequest not implemented";
+        },
         getContext: function () {
             return responseContext;
         },
@@ -22,9 +24,5 @@ let requestPayload,
             responsePayload = newPayloadStr;
         }
     };
-
-function sendRequest() {
-    throw "sendRequest not implemented";
-}
 
 export default api;

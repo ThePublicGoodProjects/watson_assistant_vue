@@ -1,6 +1,5 @@
 <template>
     <div class="chat-container">
-        <!--<img alt="Vue logo" src="./assets/logo.png">-->
         <chat></chat>
     </div>
 </template>

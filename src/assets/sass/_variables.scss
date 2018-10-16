@@ -1,0 +1,21 @@
+$primary-color: #3f9aff;
+
+$button-background: $primary-color;
+$button-background-hover : scale-color($button-background, $lightness : -15%);
+$button-color: white;
+$button-color-alt: black;
+$button-radius: 1000px;
+$button-padding: .5rem 1rem;
+
+$paragraph-lineheight: 1.4;
+$paragraph-margin-bottom: 1rem;
+
+$message-border-radius : 5px;
+$message-padding: 1rem;
+
+$message-response-background : #d6e1f5;
+$message-response-color : #000;
+
+$message-request-background : #5243f6;
+$message-request-color : #FFF;
+

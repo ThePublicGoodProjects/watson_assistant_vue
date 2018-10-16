@@ -1,0 +1,85 @@
+{
+    "intents"  : [],
+    "entities" : [],
+    "input"    : {},
+    "output"   : {
+        "generic"       : [
+            {
+                "source"        : "https://via.placeholder.com/200x200",
+                "title": "this is a title",
+                "description"   : "Hi! My name is Layla and I'm a birth control bot. You can ask me any question about birth control (like the pill, patch, ring, shot, IUD, implant, or condom). You can even ask questions that might be kind of embarrassing - I won't tell!",
+                "response_type" : "image"
+            },
+            {
+                "options"       : [
+                    {
+                        "label" : "Birth Control Types",
+                        "value" : {
+                            "input" : {
+                                "text" : "birth control types"
+                            }
+                        }
+                    },
+                    {
+                        "label" : "What is an IUD?",
+                        "value" : {
+                            "input" : {
+                                "text" : "what is an IUD?"
+                            }
+                        }
+                    }
+                ],
+                "preference"    : "text",
+                "response_type" : "option"
+            },
+            {
+                "time"          : 3000,
+                "typing"        : true,
+                "response_type" : "pause"
+            },
+            {
+                "title"         : "What would you like to know? For example, you can ask me about the different types of birth control, or where to get it. Hopefully I'll have an answer for you, if not, blame the bot!",
+                "options"       : [
+                    {
+                        "label" : "Birth Control Types",
+                        "value" : {
+                            "input" : {
+                                "text" : "birth control types"
+                            }
+                        }
+                    },
+                    {
+                        "label" : "What is an IUD?",
+                        "value" : {
+                            "input" : {
+                                "text" : "what is an IUD?"
+                            }
+                        }
+                    }
+                ],
+                "preference"    : "button",
+                "response_type" : "option"
+            }
+
+        ],
+        "text"          : [],
+        "nodes_visited" : [
+            "Welcome"
+        ],
+        "log_messages"  : []
+    },
+    "context"  : {
+        "conversation_id" : "1c55c9de-4160-494a-92fc-1fdfc8e53300",
+        "system"          : {
+            "dialog_stack"           : [
+                {
+                    "dialog_node" : "root"
+                }
+            ],
+            "dialog_turn_counter"    : 1,
+            "dialog_request_counter" : 1,
+            "branch_exited"          : true,
+            "branch_exited_reason"   : "completed"
+        }
+    }
+}

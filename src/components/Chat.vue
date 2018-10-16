@@ -1,24 +1,23 @@
 <template>
     <div class="chat">
-        <div class="scrolling-chat">
+        <div class="chat-scroll-container">
             <chat-message-list :messages="messages"></chat-message-list>
         </div>
-        <chat-message-form @change="addRequest"></chat-message-form>
+        <chat-message-input @change="addRequest"></chat-message-input>
     </div>
 </template>
 
 <script>
     /* eslint-disable no-unused-vars, no-console */
     import chatMessageList from './ChatMessageList.vue';
-    import chatMessageForm from './ChatMessageForm.vue';
-
+    import chatMessageInput from './ChatMessageInput.vue';
     import '../assets/sass/app.scss';
 
     export default {
         name      : "Chat",
         components: {
             chatMessageList,
-            chatMessageForm
+            chatMessageInput
         },
         data() {
             return {
@@ -59,7 +58,7 @@
                 }
             },
             scrollToBottom: function () {
-                var scrollingChat       = this.$el.querySelector('.scrolling-chat');
+                var scrollingChat       = this.$el.querySelector('.chat-scroll-container');
                 scrollingChat.scrollTop = scrollingChat.scrollHeight;
             },
             addRequest: function (message) {

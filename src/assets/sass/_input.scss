@@ -1,0 +1,36 @@
+.chat-message-input {
+    .dummy-input,
+    input[type="text"] {
+        border         : none;
+        outline        : none;
+        background     : transparent;
+        font-size      : 1rem;
+        color          : #323232;
+        letter-spacing : 0.015rem;
+        line-height    : 1.3125rem;
+        height         : 2.5rem;
+        max-width      : 100%;
+        display        : inline-block;
+        margin-bottom  : -0.125rem;
+        box-shadow     : none;
+        padding        : 0 .5rem;
+        border-bottom: 2px solid transparent;
+
+        &.underline {
+            transition: border-bottom .5s ease-in;
+            border-bottom : 2px solid #00B4A0;
+        }
+        &::placeholder {
+            color   : #B5B5B5;
+            opacity : 1;
+        }
+    }
+
+    .inputOutline {
+        display       : block;
+        border-bottom : 0.0625rem solid #aeaeae;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+}

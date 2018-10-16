@@ -1,0 +1,39 @@
+.chat {
+    height      : 100vh;
+    margin      : 0 auto;
+    font-family : Helvetica Neue, Helvetica, Arial, sans-serif;
+
+    div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+        margin  : 0;
+        padding : 0;
+    }
+
+    ul, ol {
+        margin-left   : 1.25rem;
+        margin-bottom : 0;
+    }
+
+    ul, ol, dl {
+        list-style-position : outside;
+        line-height         : 1.6;
+    }
+    p {
+        line-height : $paragraph-lineheight;
+        margin-bottom : $paragraph-margin-bottom;
+    }
+
+    .chat-scroll-container {
+        overflow-x : hidden;
+        overflow-y : scroll;
+        height     : calc(100% - 100px);
+    }
+
+    .chat-message-list {
+        padding : 1rem 1rem;
+        //border  : 1px solid $light-gray;
+    }
+}
+
+#sample-section {
+    margin-top: 200px;
+}
