@@ -14,6 +14,9 @@
     import chatMessageInput from './ChatMessageInput.vue';
     import Api from '../watson-api.js';
     import '../assets/sass/app.scss';
+    let settings = {
+        pauseDelay: 1000
+    };
 
     export default {
         name      : "Chat",
@@ -47,13 +50,17 @@
                 index = index || 0;
                 if (index < responses.length) {
                     response = responses[index];
-                    vm.addMessage(response);
                     if (response.response_type === 'pause') {
                         setTimeout(function () {
+                            vm.addMessage(response);
+                        }, settings.pauseDelay);
+
+                        setTimeout(function () {
                             vm.setResponse(responses, index + 1);
-                        }, response.time);
+                        }, response.time + settings.pauseDelay);
                     }
                     else {
+                        vm.addMessage(response);
                         vm.setResponse(responses, index + 1);
                     }
 

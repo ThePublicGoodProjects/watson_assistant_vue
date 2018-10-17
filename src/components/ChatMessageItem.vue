@@ -30,7 +30,7 @@
         <div class="item-avatar" v-if="pauseType && paused"></div>
         <div class="item-bubble" v-if="pauseType && paused">
             <div class="item-message">
-                <div>Typing....</div>
+                <div>...</div>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
             this.scroll();
             setTimeout(function () {
                 vm.paused = false;
-            }, this.item.time);
+            }, this.item.time || 0);
             this.$nextTick(function () {
                 vm.scroll();
             });
