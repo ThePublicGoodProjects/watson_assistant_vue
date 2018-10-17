@@ -9,8 +9,10 @@
 
 <script>
     /* eslint-disable no-unused-vars, no-console */
+    import 'current-script-polyfill';
     import chatMessageList from './ChatMessageList.vue';
     import chatMessageInput from './ChatMessageInput.vue';
+    import Api from '../watson-api.js';
     import '../assets/sass/app.scss';
 
     export default {
@@ -34,8 +36,8 @@
         methods   : {
             sendRequest: function (message) {
                 const vm = this;
-                this.$root.api.sendRequest(message).then(function () {
-                    var responses = vm.$root.api.getResponsePayload();
+                Api.sendRequest(message).then(function () {
+                    var responses = Api.getResponsePayload();
                     vm.setResponse(responses)
                 });
             },

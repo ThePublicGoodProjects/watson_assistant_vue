@@ -39,7 +39,7 @@
 
 <script>
     export default {
-        name    : "ChatMessageList",
+        name    : "ChatMessageItem",
         props   : {
             item: {
                 type   : Object,
@@ -56,11 +56,14 @@
         },
         mounted : function () {
             let vm = this;
-            this.scroll();
             vm.paused = true;
+            this.scroll();
             setTimeout(function () {
                 vm.paused = false;
             }, this.item.time);
+            this.$nextTick(function () {
+                vm.scroll();
+            });
         },
         computed: {
             bubbleClass: function () {
