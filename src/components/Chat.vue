@@ -51,9 +51,10 @@
                 if (index < responses.length) {
                     response = responses[index];
                     if (response.response_type === 'pause') {
-                        setTimeout(function () {
-                            vm.addMessage(response);
-                        }, settings.pauseDelay);
+                        // setTimeout(function () {
+                        //     vm.addMessage(response);
+                        // }, settings.pauseDelay);
+                        vm.addMessage(response);
 
                         setTimeout(function () {
                             vm.setResponse(responses, index + 1);
