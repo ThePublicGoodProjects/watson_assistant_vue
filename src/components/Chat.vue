@@ -15,7 +15,7 @@
     import Api from '../watson-api.js';
     import '../assets/sass/app.scss';
     let settings = {
-        pauseDelay: 1000
+        pauseDelay: 0
     };
 
     export default {
