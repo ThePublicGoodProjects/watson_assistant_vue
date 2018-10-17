@@ -3,7 +3,7 @@
         <div class="chat-scroll-container">
             <chat-message-list :messages="messages"></chat-message-list>
         </div>
-        <chat-message-input @change="addRequest"></chat-message-input>
+        <chat-message-input @changeInput="changeInput" @submitMessage="addRequest"></chat-message-input>
     </div>
 </template>
 
@@ -15,7 +15,8 @@
     import Api from '../watson-api.js';
     import '../assets/sass/app.scss';
     let settings = {
-        pauseDelay: 0
+        pauseDelay: 0,
+        firstInteractionMessageDelay: 30000,
     };
 
     export default {
@@ -26,7 +27,8 @@
         },
         data() {
             return {
-                messages: []
+                messages: [],
+                firstInteraction: false
             };
 
         },
@@ -34,7 +36,13 @@
 
         },
         mounted() {
+            let vm = this;
             this.sendRequest('');
+            setTimeout(function () {
+                if (! vm.firstInteraction) {
+                   vm.sendRequest('How can I use this system')
+                }
+            }, settings.firstInteractionMessageDelay);
         },
         methods   : {
             sendRequest: function (message) {
@@ -82,6 +90,9 @@
             addMessage: function (message) {
                 this.messages.push(message);
 
+            },
+            changeInput: function () {
+                this.firstInteraction = true;
             }
         }
 

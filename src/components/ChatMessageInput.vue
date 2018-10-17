@@ -1,7 +1,7 @@
 <template>
     <div class="chat-message-input">
         <label class="inputOutline">
-            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit"/>
+            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit" @keyup="change"/>
         </label>
         <span class="dummy-input">{{message}}</span>
     </div>
@@ -48,11 +48,14 @@
 
         },
         methods: {
+            change: function () {
+                this.$emit('changeInput', true);
+            },
             submit       : function () {
                 if (this.message.length < 1) {
                     return false;
                 }
-                this.$emit('change', this.message);
+                this.$emit('submitMessage', this.message);
                 this.message = '';
             }
         }
