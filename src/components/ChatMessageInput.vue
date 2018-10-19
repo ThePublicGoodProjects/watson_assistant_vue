@@ -1,7 +1,7 @@
 <template>
     <div class="chat-message-input">
         <label class="inputOutline">
-            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit" @keypress="change" @focus="focus($event)" @blur="blur($event)"/>
+            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit" @keyup="change" @focus="focus($event)" @blur="blur($event)"/>
             <a href="#" class="send-button" @click.prevent="submit"><i class="fab fa-telegram"></i></a>
         </label>
         <!--<span class="dummy-input">{{message}}</span>-->
