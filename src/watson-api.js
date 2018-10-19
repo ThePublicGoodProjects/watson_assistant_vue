@@ -8,6 +8,7 @@ let axiosInstance = Axios.create({
         baseURL: url,
         headers: {'Content-type': 'application/json'}
     });
+    // confidenceThreshold = .1;
 
 function translateResponse(payload) {
     let responses = [];
@@ -18,6 +19,17 @@ function translateResponse(payload) {
 }
 
 Api.sendRequest = sendRequest;
+
+// function checkConfidence(response) {
+//     let confidence = response.data.intents && response.data.intents.length && response.data.intents[0].confidence || false;
+//     if (confidence && confidence < confidenceThreshold) {
+//         response.data.output.generic = [];
+//         response.data.output.generic.push({
+//             response_type: 'text',
+//             text: "Sorry... I don't have an answer for that. Want to ask that another way?"
+//         })
+//     }
+// }
 
 function sendRequest(text) {
     // Build request payload
@@ -39,6 +51,7 @@ function sendRequest(text) {
         headers: {'Content-type': 'application/json'},
     }).then(function (response) {
         if (response && response.data) {
+            // checkConfidence(response);
             Api.setResponsePayload(translateResponse(response.data), response.data.context);
         }
     });
