@@ -24,11 +24,11 @@
             }
         },
         mounted: function () {
-            let vm = this;
+            // let vm = this;
             this.inputEl                = this.$el.querySelector('input');
-            setTimeout(function () {
-                vm.inputEl.focus();
-            }, 500);
+            // setTimeout(function () {
+            //     vm.inputEl.focus();
+            // }, 500);
         },
         methods: {
             press() {
