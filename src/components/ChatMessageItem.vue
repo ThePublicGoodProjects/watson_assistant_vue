@@ -1,6 +1,8 @@
 <template>
     <div class="chat-message-item" :class="bubbleClass">
-        <div class="item-avatar" v-if="!pauseType && !isUser"></div>
+        <div class="item-avatar" v-if="!pauseType && !isUser">
+            <div class="avatar-image"></div>
+        </div>
         <div class="item-bubble" v-if="imageType">
             <div class="item-message">
                 <img v-bind:src="item.source" alt="" @load="loaded">
