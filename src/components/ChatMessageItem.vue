@@ -29,7 +29,9 @@
                 </ul>
             </div>
         </div>
-        <div class="item-avatar" v-if="pauseType && paused"></div>
+        <div class="item-avatar" v-if="pauseType && paused">
+            <div class="avatar-image"></div>
+        </div>
         <div class="item-bubble" v-if="pauseType && paused">
             <div class="item-message">
                 <div>...</div>
