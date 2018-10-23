@@ -12,7 +12,7 @@
         </div>
         <div class="item-bubble type-text" v-if="textType">
             <div class="item-message">
-                <p v-html="item.text"></p>
+                <p v-html="item.text" @load="loaded"></p>
             </div>
         </div>
         <div class="item-bubble" v-if="optionType">
