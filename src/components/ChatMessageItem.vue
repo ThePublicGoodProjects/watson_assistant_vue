@@ -67,6 +67,11 @@
             }, this.item.time || 0);
             this.$nextTick(function () {
                 vm.scroll();
+
+                // @todo - handle image load
+                setTimeout(function () {
+                    vm.scroll();
+                }, 1000)
             });
         },
         computed: {
