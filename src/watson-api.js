@@ -19,6 +19,7 @@ function translateResponse(payload) {
 
 Api.sendRequest = sendRequest;
 Api.UNKNOWN_MESSAGE = 'e1eb36b0-040d-4fdd-843d-ccde7dc6a3c8';
+Api.CONFIDENCE_THRESHOLD = .4;
 
 function getIntents(response) {
     return response.data.intents;

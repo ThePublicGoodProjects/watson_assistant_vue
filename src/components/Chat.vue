@@ -7,6 +7,7 @@
             <chat-message-input @changeInput="changeInput" @submitMessage="addRequest"></chat-message-input>
         </div>
         <div class="chat-analysis" v-if="debugMode">
+            <div class="info">Min. Threshold: {{ threshold * 100 }}%</div>
             <ul>
                 <li v-for="(intent, index) in intents" v-bind:key="index">
                     <div class="message">{{ intent.message }}</div>
@@ -48,6 +49,7 @@
                 messages        : [],
                 intents         : [],
                 debug           : this.debugMode,
+                threshold: Api.CONFIDENCE_THRESHOLD,
                 firstInteraction: false
             };
 
@@ -73,7 +75,7 @@
                     if (message !== Api.UNKNOWN_MESSAGE) {
                         vm.setIntents(message, intents);
                     }
-                    if (!intents.length || intents[0].confidence > .4) {
+                    if (!intents.length || intents[0].confidence > Api.CONFIDENCE_THRESHOLD) {
                         vm.setResponse(responses);
                     }
                     else {
