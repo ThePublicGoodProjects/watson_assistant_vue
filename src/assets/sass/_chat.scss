@@ -53,12 +53,13 @@
             font-weight: bold;
         }
 
+
         ul {
             list-style: none;
-            margin-left: 1rem;
+            margin-left: 0;
             li {
                 border-bottom : 1px solid #fff;
-                padding       : .5rem 0;
+                padding       : .5rem;
             }
         }
     }
