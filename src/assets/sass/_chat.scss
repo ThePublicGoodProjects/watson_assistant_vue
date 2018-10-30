@@ -40,11 +40,11 @@
 
 .chat.debug {
     .chat-inner {
-        width: 80%;
+        width: 70%;
     }
     .chat-analysis {
-        font-size: 1rem;
-        width: 20%;
+        font-size: 15px;
+        width: 30%;
         position:absolute;
         right: 0;
         top: 0;
@@ -61,7 +61,7 @@
             list-style: none;
             margin-left: 0;
             li {
-                border-bottom : 1px solid #fff;
+                border-bottom : 1px solid #999;
                 padding       : .5rem;
             }
         }

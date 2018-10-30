@@ -8,7 +8,7 @@
         </div>
         <div class="chat-analysis" v-if="debugMode">
             <ul>
-                <li v-for="(intent, index) in intents" v-bind:key="index" >
+                <li v-for="(intent, index) in intents" v-bind:key="index">
                     <div class="message">{{ intent.message }}</div>
                     <div v-for="(intentVal, indexTwo) in intent.intents" v-bind:key="indexTwo">
                         <span>{{ intentVal.intent }}</span>: <span>{{ Math.round(intentVal.confidence * 100) }}%</span></div>
@@ -82,10 +82,12 @@
                 });
             },
             setIntents    : function (message, intents, index) {
-                this.intents.push({
-                    message: message,
-                    intents: intents
-                })
+                if (intents.length) {
+                    this.intents.unshift({
+                        message: message,
+                        intents: intents
+                    });
+                }
             },
             setResponse   : function (responses, index) {
                 let response,
