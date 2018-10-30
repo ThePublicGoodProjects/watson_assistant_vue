@@ -23,9 +23,6 @@ let requestPayload,
         getResponseIntents: function () {
             return responseIntents;
         },
-        setResponseDebug: function (intents, input) {
-
-        },
         setResponsePayload: function (newPayloadStr, context, intents) {
             responseIntents = intents;
             responseContext = context;

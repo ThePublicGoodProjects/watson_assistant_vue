@@ -39,12 +39,15 @@
         width: 80%;
     }
     .chat-analysis {
+        font-size: 1rem;
         width: 20%;
-        position:fixed;
+        position:absolute;
         right: 0;
         top: 0;
         bottom: 0;
-        background-color: rgba(255, 30, 196, 0.08);
+        background-color: #eee;
+        border-radius : 10px;
+        overflow-y    : auto;
 
         .message {
             font-weight: bold;
