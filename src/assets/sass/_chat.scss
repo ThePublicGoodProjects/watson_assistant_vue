@@ -8,6 +8,10 @@
         padding : 0;
     }
 
+    .chat-inner {
+        height: 100%;
+    }
+
     ul, ol {
         margin-left   : 1.25rem;
         margin-bottom : 0;
@@ -52,7 +56,6 @@
         .message {
             font-weight: bold;
         }
-
 
         ul {
             list-style: none;
