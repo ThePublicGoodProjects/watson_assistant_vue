@@ -58,10 +58,11 @@
         }
 
         .info {
-            padding    : .5rem 1rem;
+            padding    : .2rem .5rem;
             color      : #666;
-            font-size  : 12px;
+            font-size  : 10px;
             text-align : right;
+            border-bottom: 1px solid #ccc;
         }
 
         ul {
