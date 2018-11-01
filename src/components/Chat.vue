@@ -1,12 +1,12 @@
 <template>
-    <div class="chat" :class="debugMode ? 'debug' : ''">
+    <div class="chat" :class="debug ? 'debug' : ''">
         <div class="chat-inner">
             <div class="chat-scroll-container">
                 <chat-message-list :messages="messages"></chat-message-list>
             </div>
             <chat-message-input @changeInput="changeInput" @submitMessage="addRequest"></chat-message-input>
         </div>
-        <div class="chat-analysis" v-if="debugMode">
+        <div class="chat-analysis" v-if="debug">
             <div class="info">Min. Threshold: {{ threshold * 100 }}%</div>
             <ul>
                 <li v-for="(intent, index) in intents" v-bind:key="index">
@@ -39,17 +39,20 @@
             chatMessageInput
         },
         props     : {
-            debugMode: {
-                type   : Boolean,
-                default: false
+            options: {
+                type   : Object,
+                default: function () {
+                    return {}
+                }
             }
         },
         data() {
             return {
                 messages        : [],
                 intents         : [],
-                debug           : this.debugMode,
-                threshold: Api.CONFIDENCE_THRESHOLD,
+                debug           : this.options.debug || false,
+                language        : this.options.language || 'default',
+                threshold       : Api.CONFIDENCE_THRESHOLD,
                 firstInteraction: false
             };
 
@@ -59,7 +62,7 @@
         },
         mounted() {
             let vm = this;
-            this.sendRequest('', {'bot_lang': 'layla'});
+            this.sendRequest('', {'bot_lang': this.language});
             setTimeout(function () {
                 if (!vm.firstInteraction) {
                     vm.sendRequest('How can I use this system');

@@ -1,12 +1,13 @@
 <template>
     <div class="chat-container">
-        <chat :debug-mode="debugMode"></chat>
+        <chat :options="options"></chat>
     </div>
 </template>
 
 <script>
     import 'url-search-params-polyfill';
     import Chat from './components/Chat.vue';
+
     export default {
         name      : 'chat-module',
         components: {
@@ -14,11 +15,15 @@
         },
         data() {
             let urlParams = new URLSearchParams(window.location.search),
-                debugMode = urlParams.get('test-mode') === 'debug';
+                debugMode = urlParams.get('test-mode') === 'debug',
+                botMode   = urlParams.get('lang-mode') === 'default' ? 'default' : 'layla';
 
             return {
-                debugMode: debugMode
-            }
+                options: {
+                    debug   : debugMode,
+                    language: botMode
+                },
+            };
         }
     };
 </script>
