@@ -42,7 +42,7 @@
             options: {
                 type   : Object,
                 default: function () {
-                    return {}
+                    return {};
                 }
             }
         },
@@ -52,6 +52,7 @@
                 intents         : [],
                 debug           : this.options.debug || false,
                 language        : this.options.language || 'default',
+                mode            : this.options.mode || 'web',
                 threshold       : Api.CONFIDENCE_THRESHOLD,
                 firstInteraction: false
             };
@@ -62,7 +63,10 @@
         },
         mounted() {
             let vm = this;
-            this.sendRequest('', {'bot_lang': this.language});
+            this.sendRequest('', {
+                'bot_lang': this.language,
+                'bot_mode': this.mode
+            });
             setTimeout(function () {
                 if (!vm.firstInteraction) {
                     vm.sendRequest('How can I use this system');

@@ -21,7 +21,8 @@
             return {
                 options: {
                     debug   : debugMode,
-                    language: botMode
+                    language: botMode,
+                    mode    : 'web'
                 },
             };
         }
