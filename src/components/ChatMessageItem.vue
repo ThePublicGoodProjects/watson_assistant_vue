@@ -22,11 +22,11 @@
                     <button v-for="option in item.options" :key="option.label" class="button options-button" @click="sendMessage(option.value.input.text)">{{ option.label }}
                     </button>
                 </div>
-                <ul v-if="item.preference=='text'">
-                    <li v-for="option in item.options" :key="option.label">
-                        <div class="options-list" @click="sendMessage(option.value.input.text)">{{ option.label }}</div>
-                    </li>
-                </ul>
+                <div v-else>
+                    <div v-for="option in item.options" :key="option.label">
+                        <a class="options-list" href="#" @click.prevent="sendMessage(option.value.input.text)">{{ option.label }}</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="item-avatar" v-if="pauseType && paused">
@@ -53,13 +53,14 @@
             }
         },
         data    : function () {
+            console.log(this.item);
             return {
                 paused: false
             };
 
         },
         mounted : function () {
-            let vm = this;
+            let vm    = this;
             vm.paused = true;
             this.scroll();
             setTimeout(function () {
@@ -71,7 +72,7 @@
                 // @todo - handle image load
                 setTimeout(function () {
                     vm.scroll();
-                }, 1000)
+                }, 1000);
             });
         },
         computed: {
