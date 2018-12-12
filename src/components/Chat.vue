@@ -26,11 +26,13 @@
     import chatMessageInput from './ChatMessageInput.vue';
     import Api from '../watson-api.js';
     import '../assets/sass/app.scss';
+    import GtmEvents from '../assets/js/gtm-events.js';
 
     let settings = {
         pauseDelay                  : 0,
         firstInteractionMessageDelay: 30000,
-    };
+    },
+        gtmEvent = GtmEvents();
 
     export default {
         name      : "Chat",
@@ -83,6 +85,9 @@
                         vm.setIntents(message, intents);
                     }
                     if (!intents.length || intents[0].confidence > Api.CONFIDENCE_THRESHOLD) {
+                        if (intents.length) {
+                            gtmEvent('layla-chat', 'user-intent', intents[0].intent);
+                        }
                         vm.setResponse(responses);
                     }
                     else {
@@ -126,6 +131,7 @@
                 scrollingChat.scrollTop = scrollingChat.scrollHeight;
             },
             addRequest    : function (message) {
+
                 this.addMessage({
                     user_response: true,
                     response_type: 'text',
