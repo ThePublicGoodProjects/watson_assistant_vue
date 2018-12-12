@@ -53,7 +53,6 @@
             }
         },
         data    : function () {
-            console.log(this.item);
             return {
                 paused: false
             };

@@ -1,10 +1,15 @@
+/* eslint-disable no-console */
 import Axios from 'axios';
 import Api from './api.js';
+import StorageOpt from './assets/js/storage.js';
+import uuidv4 from 'uuid/v4';
 
 // let url = '/api/message';
 // let url = 'http://localhost:3000/api/message';
-let url                 = 'https://pgp-layla-test.mybluemix.net/api/message';
-let axiosInstance       = Axios.create({
+
+let url                 = 'https://pgp-layla-test.mybluemix.net/api/message',
+    storage,
+    axiosInstance       = Axios.create({
         baseURL: url,
         headers: {'Content-type': 'application/json'}
     });
@@ -27,7 +32,8 @@ function getIntents(response) {
 
 function sendRequest(text, context) {
     // Build request payload
-    let payloadToWatson = {};
+    let payloadToWatson = {},
+        userId = getUser();
 
     context = context || {};
     if (text) {
@@ -44,6 +50,12 @@ function sendRequest(text, context) {
         payloadToWatson.context = Object.assign({}, payloadToWatson.context, context);
     }
 
+    // Include a unique user id for the session to enable user metrics
+    if (userId) {
+        payloadToWatson.context.metadata = payloadToWatson.context.metadata || {};
+        payloadToWatson.context.metadata.user_id = userId;
+    }
+
     if (Object.getOwnPropertyNames(payloadToWatson)) {
         Api.setRequestPayload(payloadToWatson);
     }
@@ -56,5 +68,32 @@ function sendRequest(text, context) {
         }
     });
 }
+
+function getUser() {
+    if (! storage) {
+        return false;
+    }
+
+    let userId = storage.get('user_id');
+    if (! userId) {
+
+        userId = uuidv4();
+        storage.set('user_id', userId);
+    }
+
+    return userId;
+}
+
+function init() {
+    try {
+        // sessionStorage
+        storage = StorageOpt(true);
+    }
+    catch ($e) {
+        // console.log('sessionStorage not enabled');
+    }
+}
+
+init();
 
 export default Api;
