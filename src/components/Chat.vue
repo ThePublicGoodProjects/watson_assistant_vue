@@ -71,14 +71,15 @@
             });
             setTimeout(function () {
                 if (!vm.firstInteraction) {
-                    vm.sendRequest('How can I use this system');
+                    vm.sendRequest('How can I use this system', false, true);
                 }
             }, settings.firstInteractionMessageDelay);
         },
         methods   : {
-            sendRequest   : function (message, context) {
+            sendRequest   : function (message, context, noLog) {
                 const vm = this;
-                Api.sendRequest(message, context || {}).then(function () {
+                noLog = noLog || false;
+                Api.sendRequest(message, context || {}, noLog).then(function () {
                     let intents   = Api.getResponseIntents(),
                         responses = Api.getResponsePayload();
                     if (message !== Api.UNKNOWN_MESSAGE) {

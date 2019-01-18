@@ -32,10 +32,10 @@ function getIntents(response) {
     return response.data.intents;
 }
 
-function sendRequest(text, context) {
+function sendRequest(text, context, noLog) {
     // Build request payload
     let payloadToWatson = {},
-        userId = getUser();
+        userId = (noLog || false) ? '' : getUser();
 
     context = context || {};
     if (text) {
@@ -56,6 +56,10 @@ function sendRequest(text, context) {
     if (userId) {
         payloadToWatson.context.metadata = payloadToWatson.context.metadata || {};
         payloadToWatson.context.metadata.user_id = userId;
+    }
+
+    if (noLog && payloadToWatson.context.metadata.user_id) {
+        delete payloadToWatson.context.metadata.user_id;
     }
 
     if (Object.getOwnPropertyNames(payloadToWatson)) {
