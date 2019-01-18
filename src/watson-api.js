@@ -7,7 +7,9 @@ import uuidv4 from 'uuid/v4';
 // let url = '/api/message';
 // let url = 'http://localhost:3000/api/message';
 
-let url                 = 'https://pgp-layla-test.mybluemix.net/api/message',
+let
+    // url                 = 'https://pgp-layla-test.mybluemix.net/api/message',
+    url                 = 'https://watson-layla-env.publicgoodprojects.rocks/api/message',
     storage,
     axiosInstance       = Axios.create({
         baseURL: url,
