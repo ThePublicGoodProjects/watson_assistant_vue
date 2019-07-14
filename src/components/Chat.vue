@@ -64,11 +64,16 @@
 
         },
         mounted() {
-            let vm = this;
+            let vm = this,
+                readyEvent = new Event('chatbot.ready');
+
             this.sendRequest('', {
                 'bot_lang': this.language,
                 'bot_mode': this.mode
             });
+
+            document.dispatchEvent(readyEvent);
+
             setTimeout(function () {
                 if (!vm.firstInteraction) {
                     vm.sendRequest('How can I use this system', false, true);

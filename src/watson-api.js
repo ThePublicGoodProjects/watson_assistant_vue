@@ -26,7 +26,9 @@ function translateResponse(payload) {
 
 Api.sendRequest = sendRequest;
 Api.UNKNOWN_MESSAGE = 'e1eb36b0-040d-4fdd-843d-ccde7dc6a3c8';
-Api.CONFIDENCE_THRESHOLD = .4;
+
+// Confidence must be at least 50% or fallback is triggered
+Api.CONFIDENCE_THRESHOLD = .5;
 
 function getIntents(response) {
     return response.data.intents;
