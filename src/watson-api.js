@@ -5,7 +5,7 @@ import StorageOpt from './assets/js/storage.js';
 import uuidv4 from 'uuid/v4';
 
 // let url = '/api/message';
-// let url = 'http://localhost:3000/api/message';
+// let url = 'http://localhost:9000/api/message';
 
 let
     // url                 = 'https://pgp-layla-test.mybluemix.net/api/message',
@@ -37,7 +37,7 @@ function getIntents(response) {
 function sendRequest(text, context, noLog) {
     // Build request payload
     let payloadToWatson = {},
-        userId = (noLog || false) ? '' : getUser();
+        userId = noLog ? '' : getUser();
 
     context = context || {};
     if (text) {
@@ -58,10 +58,6 @@ function sendRequest(text, context, noLog) {
     if (userId) {
         payloadToWatson.context.metadata = payloadToWatson.context.metadata || {};
         payloadToWatson.context.metadata.user_id = userId;
-    }
-
-    if (noLog && payloadToWatson.context.metadata.user_id) {
-        delete payloadToWatson.context.metadata.user_id;
     }
 
     if (Object.getOwnPropertyNames(payloadToWatson)) {

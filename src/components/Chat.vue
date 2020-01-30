@@ -70,7 +70,7 @@
             this.sendRequest('', {
                 'bot_lang': this.language,
                 'bot_mode': this.mode
-            });
+            }, this.debug);
 
             document.dispatchEvent(readyEvent);
 
@@ -97,7 +97,7 @@
                         vm.setResponse(responses);
                     }
                     else {
-                        vm.sendRequest(Api.UNKNOWN_MESSAGE, context);
+                        vm.sendRequest(Api.UNKNOWN_MESSAGE, context, noLog);
                     }
                 });
             },
@@ -143,7 +143,7 @@
                     response_type: 'text',
                     text         : message
                 });
-                this.sendRequest(message);
+                this.sendRequest(message, {}, this.debug);
             },
             addMessage    : function (message) {
                 this.messages.push(message);
