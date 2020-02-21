@@ -70,7 +70,7 @@
             this.sendRequest('', {
                 'bot_lang': this.language,
                 'bot_mode': this.mode
-            }, this.debug);
+            }, true);
 
             document.dispatchEvent(readyEvent);
 
