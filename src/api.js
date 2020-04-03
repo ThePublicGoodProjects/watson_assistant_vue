@@ -2,6 +2,7 @@
 let requestPayload,
     responsePayload,
     responseContext,
+    responseIntents,
     api           = {
         sendRequest: function () {
             throw "sendRequest not implemented";
@@ -19,7 +20,11 @@ let requestPayload,
         getResponsePayload: function () {
             return responsePayload;
         },
-        setResponsePayload: function (newPayloadStr, context) {
+        getResponseIntents: function () {
+            return responseIntents;
+        },
+        setResponsePayload: function (newPayloadStr, context, intents) {
+            responseIntents = intents;
             responseContext = context;
             responsePayload = newPayloadStr;
         }

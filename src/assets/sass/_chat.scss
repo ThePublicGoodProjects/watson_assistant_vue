@@ -8,6 +8,10 @@
         padding : 0;
     }
 
+    .chat-inner {
+        height: 100%;
+    }
+
     ul, ol {
         margin-left   : 1.25rem;
         margin-bottom : 0;
@@ -31,6 +35,44 @@
     .chat-message-list {
         padding : 1rem 1rem;
         //border  : 1px solid $light-gray;
+    }
+}
+
+.chat.debug {
+    .chat-inner {
+        width: 70%;
+    }
+    .chat-analysis {
+        font-size: 15px;
+        width: 30%;
+        position:absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #eee;
+        border-radius : 10px;
+        overflow-y    : auto;
+
+        .message {
+            font-weight: bold;
+        }
+
+        .info {
+            padding    : .2rem .5rem;
+            color      : #666;
+            font-size  : 10px;
+            text-align : right;
+            border-bottom: 1px solid #ccc;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+            li {
+                border-bottom : 1px solid #999;
+                padding       : .5rem;
+            }
+        }
     }
 }
 

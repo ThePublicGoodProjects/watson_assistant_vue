@@ -13,12 +13,14 @@
         display        : inline-block;
         margin-bottom  : -0.125rem;
         box-shadow     : none;
-        padding        : 0 .5rem;
-        border-bottom: 2px solid transparent;
+        padding        : 0 2px;
+        border-bottom : 4px solid #ddd;
+        width: 100%;
+        transition : border-bottom .3s ease-in;
 
         &.underline {
-            transition: border-bottom .5s ease-in;
-            border-bottom : 2px solid #00B4A0;
+            transition: border-bottom .3s ease-in;
+            border-bottom : 4px solid #00B4A0;
         }
         &::placeholder {
             color   : #B5B5B5;
@@ -26,11 +28,20 @@
         }
     }
 
+    .send-button {
+        color: #aaa;
+        font-size: 40px;
+        transition : all .1s ease-in;
+        &:hover {
+            transition : all .1s ease-in;
+            color: #333;
+        }
+    }
+
     .inputOutline {
-        display       : block;
-        border-bottom : 0.0625rem solid #aeaeae;
         width: 80%;
         margin: 0 auto;
+        display:flex;
     }
 
 }

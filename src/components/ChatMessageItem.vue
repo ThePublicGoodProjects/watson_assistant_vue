@@ -1,6 +1,8 @@
 <template>
     <div class="chat-message-item" :class="bubbleClass">
-        <div class="item-avatar" v-if="!pauseType && !isUser"></div>
+        <div class="item-avatar" v-if="!pauseType && !isUser">
+            <div class="avatar-image"></div>
+        </div>
         <div class="item-bubble" v-if="imageType">
             <div class="item-message">
                 <img v-bind:src="item.source" alt="" @load="loaded">
@@ -10,7 +12,7 @@
         </div>
         <div class="item-bubble type-text" v-if="textType">
             <div class="item-message">
-                <p v-html="item.text"></p>
+                <p v-html="item.text" @load="loaded"></p>
             </div>
         </div>
         <div class="item-bubble" v-if="optionType">
@@ -20,17 +22,19 @@
                     <button v-for="option in item.options" :key="option.label" class="button options-button" @click="sendMessage(option.value.input.text)">{{ option.label }}
                     </button>
                 </div>
-                <ul v-if="item.preference=='text'">
-                    <li v-for="option in item.options" :key="option.label">
-                        <div class="options-list" @click="sendMessage(option.value.input.text)">{{ option.label }}</div>
-                    </li>
-                </ul>
+                <div v-else>
+                    <div v-for="option in item.options" :key="option.label">
+                        <a class="options-list" href="#" @click.prevent="sendMessage(option.value.input.text)">{{ option.label }}</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="item-avatar" v-if="pauseType && paused"></div>
+        <div class="item-avatar" v-if="pauseType && paused">
+            <div class="avatar-image"></div>
+        </div>
         <div class="item-bubble" v-if="pauseType && paused">
             <div class="item-message">
-                <div>Typing....</div>
+                <div>...</div>
             </div>
         </div>
     </div>
@@ -39,7 +43,7 @@
 
 <script>
     export default {
-        name    : "ChatMessageList",
+        name    : "ChatMessageItem",
         props   : {
             item: {
                 type   : Object,
@@ -55,12 +59,20 @@
 
         },
         mounted : function () {
-            let vm = this;
-            this.scroll();
+            let vm    = this;
             vm.paused = true;
+            this.scroll();
             setTimeout(function () {
                 vm.paused = false;
-            }, this.item.time);
+            }, this.item.time || 0);
+            this.$nextTick(function () {
+                vm.scroll();
+
+                // @todo - handle image load
+                setTimeout(function () {
+                    vm.scroll();
+                }, 1000);
+            });
         },
         computed: {
             bubbleClass: function () {

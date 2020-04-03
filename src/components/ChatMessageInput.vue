@@ -1,9 +1,10 @@
 <template>
     <div class="chat-message-input">
         <label class="inputOutline">
-            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit"/>
+            <input name="text-input" type="text" v-model="message" placeholder="Ask a question..." @keyup.enter="submit" @keyup="change" @focus="focus($event)" @blur="blur($event)"/>
+            <a href="#" class="send-button" @click.prevent="submit"><i class="fab fa-telegram"></i></a>
         </label>
-        <span class="dummy-input">{{message}}</span>
+        <!--<span class="dummy-input">{{message}}</span>-->
     </div>
 </template>
 
@@ -13,46 +14,46 @@
         data() {
 
             return {
-                message: ''
+                message: '',
+                hasInput: false
             };
         },
         watch  : {
-            message: function (newValue) {
-                let hasValue = !!newValue.length,
-                    input    = this.inputEl,
-                    dummy    = this.dummyEl;
+            message: function () {
 
-                if (!hasValue) {
-                    // If the input box is empty, remove the underline
-                    input.classList.remove('underline');
-                    input.setAttribute('style', 'width:' + '100%');
-                    input.style.width = '100%';
-
-                }
-                else {
-                    input.classList.add('underline');
-                    this.$nextTick(function() {
-                        input.style.width = dummy.offsetWidth + 'px';
-                    });
-                }
             }
         },
         mounted: function () {
-            let inputStyle;
-            this.inputEl = this.$el.querySelector('input');
-            inputStyle = window.getComputedStyle(this.inputEl);
-            this.inputPadding = parseInt(inputStyle.getPropertyValue('padding-left'), 10) + parseInt(inputStyle.getPropertyValue('padding-right'), 10);
-            this.dummyEl = this.$el.querySelector('.dummy-input');
-            this.dummyEl.style.position = 'absolute';
-            this.dummyEl.style.top = '-1000px';
-
+            // let vm = this;
+            this.inputEl                = this.$el.querySelector('input');
+            // setTimeout(function () {
+            //     vm.inputEl.focus();
+            // }, 500);
         },
         methods: {
-            submit       : function () {
+            press() {
+
+            },
+
+            blur(event) {
+                if (!this.message) {
+                    event.target.classList.remove('underline');
+                }
+            },
+
+            focus(event) {
+                event.target.classList.add('underline');
+            },
+
+            change () {
+                this.$emit('changeInput', true);
+            },
+
+            submit () {
                 if (this.message.length < 1) {
                     return false;
                 }
-                this.$emit('change', this.message);
+                this.$emit('submitMessage', this.message);
                 this.message = '';
             }
         }
