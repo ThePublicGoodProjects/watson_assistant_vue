@@ -5,6 +5,7 @@
 
   **Todo**: API endpoint needs abstraction - currently hardcoded
 
+
 ## Project setup
 ```
 npm install
